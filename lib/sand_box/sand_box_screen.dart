@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class SandBoxScreen extends StatelessWidget {
+  static const id = 'sandbox_screen';
   const SandBoxScreen({Key? key}) : super(key: key);
 
   @override

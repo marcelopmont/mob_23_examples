@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/foundation.dart';
 
 class CardScreen extends StatelessWidget {
+  static const id = 'card_screen';
   const CardScreen({Key? key}) : super(key: key);
 
   @override

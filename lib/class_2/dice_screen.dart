@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_class_1/class_2/components/dice_widget.dart';
 
 class DiceScreen extends StatefulWidget {
+  static const id = 'dice_screen';
   const DiceScreen({Key? key}) : super(key: key);
 
   @override

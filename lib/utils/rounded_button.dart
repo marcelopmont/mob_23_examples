@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_class_1/class_3/constants.dart';
 
-class RpgButton extends StatelessWidget {
-  const RpgButton({
+class RoundedButton extends StatelessWidget {
+  const RoundedButton({
     Key? key,
     required this.text,
     required this.onPressed,
@@ -15,12 +16,13 @@ class RpgButton extends StatelessWidget {
     return InkWell(
       onTap: onPressed,
       child: Material(
+        color: Theme.of(context).primaryColorLight,
         elevation: 4,
         borderRadius: const BorderRadius.all(Radius.circular(1000)),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Center(
-            child: Text(text),
+            child: Text(text, style: kButtonText),
           ),
         ),
       ),

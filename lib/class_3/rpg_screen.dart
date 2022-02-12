@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_class_1/class_3/components/rpg_button.dart';
 import 'package:flutter_class_1/class_3/modules/history_model.dart';
+import 'package:flutter_class_1/utils/rounded_button.dart';
 
 class RpgScreen extends StatefulWidget {
+  static const id = 'rpg_screen';
   const RpgScreen({Key? key}) : super(key: key);
 
   @override
@@ -15,7 +16,6 @@ class _RpgScreenState extends State<RpgScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColorLight,
       appBar: AppBar(
         title: const Text('RPG'),
       ),
@@ -26,6 +26,7 @@ class _RpgScreenState extends State<RpgScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Card(
+              color: Theme.of(context).primaryColorLight,
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Text(kHistory[currentNode].description),
@@ -33,12 +34,13 @@ class _RpgScreenState extends State<RpgScreen> {
             ),
             ListView.builder(
               shrinkWrap: true,
+              // physics: NeverScrollableScrollPhysics(),
               itemCount: kHistory[currentNode].actions.length,
               itemBuilder: (context, index) {
                 final historyAction = kHistory[currentNode].actions[index];
                 return Padding(
                   padding: const EdgeInsets.only(top: 16),
-                  child: RpgButton(
+                  child: RoundedButton(
                     text: historyAction.text,
                     onPressed: () {
                       setState(
