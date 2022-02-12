@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/foundation.dart';
 
 class CardScreen extends StatelessWidget {
   const CardScreen({Key? key}) : super(key: key);
@@ -7,7 +10,7 @@ class CardScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    final isWeb = screenSize.width > 400;
+    final isLargeScreen = screenSize.width > 640;
 
     return Scaffold(
       backgroundColor: Colors.teal,
@@ -29,115 +32,76 @@ class CardScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 16),
-            isWeb
+            isLargeScreen
                 ? Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(1000)),
-                            color: Colors.white,
-                          ),
-                          width: 300,
-                          padding: const EdgeInsets.all(16),
-                          child: Row(
-                            children: const [
-                              Icon(
-                                Icons.phone_android,
-                                color: Colors.teal,
-                              ),
-                              SizedBox(width: 24),
-                              Text(
-                                '11 12345-6789',
-                                style: TextStyle(
-                                  color: Colors.teal,
-                                ),
-                              ),
-                            ],
-                          ),
+                    children: const [
+                      Expanded(
+                        child: InfoItem(
+                          text: '11 12345-6789',
+                          icon: Icons.phone,
                         ),
                       ),
-                      const SizedBox(height: 16),
-                      Container(
-                        width: 300,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Material(
-                            borderRadius: BorderRadius.all(Radius.circular(1000)),
-                            color: Colors.white,
-                            elevation: 8,
-
-                            child: ListTile(
-                              leading: Icon(
-                                Icons.phone_android,
-                                color: Colors.teal,
-                              ),
-                              title: Text(
-                                '11 12345-6789',
-                                style: TextStyle(
-                                  color: Colors.teal,
-                                ),
-                              ),
-                            ),
-                          ),
+                      Expanded(
+                        child: InfoItem(
+                          text: 'email@gmail.com',
+                          icon: Icons.email,
                         ),
                       ),
                     ],
                   )
                 : Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(1000)),
-                            color: Colors.white,
-                          ),
-                          padding: const EdgeInsets.all(16),
-                          child: Row(
-                            children: const [
-                              Icon(
-                                Icons.phone_android,
-                                color: Colors.teal,
-                              ),
-                              SizedBox(width: 24),
-                              Text(
-                                '11 12345-6789',
-                                style: TextStyle(
-                                  color: Colors.teal,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                      InfoItem(
+                        text: '11 12345-6789',
+                        icon: kIsWeb
+                            ? Icons.phone
+                            : (Platform.isAndroid)
+                                ? Icons.phone_android
+                                : Icons.phone_iphone,
                       ),
                       const SizedBox(height: 16),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Material(
-                          borderRadius: BorderRadius.all(Radius.circular(1000)),
-                          color: Colors.white,
-                          elevation: 8,
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.phone_android,
-                              color: Colors.teal,
-                            ),
-                            title: Text(
-                              '11 12345-6789',
-                              style: TextStyle(
-                                color: Colors.teal,
-                              ),
-                            ),
-                          ),
-                        ),
+                      const InfoItem(
+                        text: 'email@gmail.com',
+                        icon: Icons.email,
                       ),
                     ],
                   ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class InfoItem extends StatelessWidget {
+  const InfoItem({
+    Key? key,
+    required this.icon,
+    required this.text,
+  }) : super(key: key);
+
+  final IconData icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: Material(
+        borderRadius: const BorderRadius.all(Radius.circular(1000)),
+        color: Colors.white,
+        elevation: 8,
+        child: ListTile(
+          leading: Icon(
+            icon,
+            color: Colors.teal,
+          ),
+          title: Text(
+            text,
+            style: const TextStyle(
+              color: Colors.teal,
+            ),
+          ),
         ),
       ),
     );
