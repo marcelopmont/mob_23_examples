@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_class_1/class_1/card_screen.dart';
+import 'package:flutter_class_1/class_2/dice_screen.dart';
 import 'package:flutter_class_1/sand_box/sand_box_screen.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class Mob23Examples extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: true,
-      home: CardScreen(),
+      home: DiceScreen(),
     );
   }
 }
